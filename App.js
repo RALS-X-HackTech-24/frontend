@@ -14,9 +14,10 @@ import Timeline from './Screens/Timeline';
 import Chat from './Screens/Chat';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCompass, faMessage, faTimeline } from '@fortawesome/free-solid-svg-icons'
+import { faCompass, faMessage, faTimeline, faComments } from '@fortawesome/free-solid-svg-icons'
 
 import * as Colors from './Components/Colors';
+import { View } from 'react-native';
 
 //navigation stack
 const Stack = createNativeStackNavigator();
@@ -32,7 +33,7 @@ function NavBar() {
           if (route.name === 'Discover') {
             iconName = faCompass;
           } else if (route.name === 'Chat') {
-            iconName = faMessage;
+            iconName = faComments;
           } else if (route.name === 'Timeline') {
             iconName = faTimeline;
           }

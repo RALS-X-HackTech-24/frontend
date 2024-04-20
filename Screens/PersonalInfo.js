@@ -12,6 +12,9 @@ import moment from 'moment';
 import * as Colors from '../Components/Colors';
 
 export default function PersonalInfo( {navigation, route} ) {
+
+  const { email, uid } = route.params
+
   const [city, setCity] = useState(",");
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -31,6 +34,7 @@ export default function PersonalInfo( {navigation, route} ) {
       }
 
       let location = await Location.getCurrentPositionAsync({});
+      //console.log(location)
       let decoded = await reverseGeoCode(location.coords.latitude, location.coords.longitude)
       
       setCity(decoded.city + ", " + decoded.state)
@@ -70,14 +74,14 @@ export default function PersonalInfo( {navigation, route} ) {
       </View>
 
       <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
-        <Button title="Next" width={'80%'} height={60} marginBottom={"30%"} onPress={() => navigation.navigate("Interests")}></Button>
+        <Button title="Next" width={'80%'} height={60} marginBottom={"30%"} onPress={() => navigation.navigate("AddPfp", {uid: uid, email: email, name: name, phone: phone, city: city, livingLength: livingLength, dob: dob})}></Button>
       </View>
 
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="date"
         onConfirm={(date) => {
-          setDob(date)
+          setDob(date.toISOString())
           setDatePickerVisibility(false)
         }}
         onCancel={() => setDatePickerVisibility(false)}

@@ -15,7 +15,7 @@ export default function SignUp( {navigation, route} ) {
     if (password === passwordConfirm) { 
       const res = await signUp(email, password)
       if (res.success) {
-        navigation.navigate("OnboardingInfo", {email: email, uid: res.uid})
+        navigation.navigate("PersonalInfo", {email: email, uid: res.uid})
       } else {
         Alert.alert(res.message)
       }
