@@ -25,18 +25,18 @@ export default function Login({navigation, route}) {
 
 
       <View style={{width: '80%', marginLeft: '10%', marginTop: '35%'}}>
-        <Text style={{fontSize: 15}}>Email<Text style={{color: Colors.primary}}> *</Text></Text>
+        <Text style={{fontSize: 15}}>Email<Text style={{fontWeight: "bold", color: Colors.primary}}> *</Text></Text>
         <TextInput value={email} onChangeText={text => setEmail(text)} placeholder="example@gmail.com" placeholderTextColor={Colors.secondaryDark} style={{width: '100%', color: Colors.primaryDark, marginTop: '5%', fontSize: 14}}></TextInput>
         <View style={{width: '100%', backgroundColor: Colors.secondaryDark, height: 1, marginTop: 5}}></View>
       </View>
 
       <View style={{width: '80%', marginLeft: '10%', marginTop: '17%'}}>
-        <Text style={{fontSize: 15}}>Password<Text style={{color: Colors.primary}}> *</Text></Text>
+        <Text style={{fontSize: 15}}>Password<Text style={{fontWeight: "bold", color: Colors.primary}}> *</Text></Text>
         <TextInput value={password} onChangeText={text => setPassword(text)} placeholder="secure password" placeholderTextColor={Colors.secondaryDark} style={{width: '100%', color: Colors.primaryDark, marginTop: '5%', fontSize: 14}} secureTextEntry></TextInput>
         <View style={{width: '100%', backgroundColor: Colors.secondaryDark, height: 1, marginTop: 5}}></View>
       </View>
       
-      <Button title="Login" onPress={() => loginButton(email, password)} backgroundColor={Colors.primary} width={"80%"} height={60} marginLeft={'10%'} color={"#fff"} marginTop={'30%'}></Button>
+      <Button title="Login" onPress={() => loginButton(email, password)} backgroundColor={Colors.primary} width={"80%"} height={60} marginLeft={'10%'} color={"#fff"} marginTop={'40%'}></Button>
       </ImageBackground>
     </View>
   )
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 27,
     color: Colors.primary,
-    marginTop: '25%',
+    marginTop: '0%',
     marginLeft: '10%',
     fontWeight: 'bold'
   },
