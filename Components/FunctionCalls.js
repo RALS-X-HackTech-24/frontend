@@ -1,3 +1,4 @@
+import { geocodingKey } from "../secrets/keys";
 import { getAuthToken } from "./AuthFunctions";
 
 
@@ -37,7 +38,7 @@ export async function getStays() {
   let res =  await fetch(baseURL+"stays/getStays", requestOptions)
 
   if(res.status == 200) {
-    return res.json()
+    return await res.json()
   } else {
     return res
   }
@@ -60,8 +61,26 @@ export async function getUser(uid) {
   console.log(res.status)
 
   if(res.status == 200) {
-    return res.json()
+    return await res.json()
   } else {
     return res
   }
+}
+
+export async function reverseGeoCode(lat, long) {
+  
+    var requestOptions = {
+      method: "GET",
+      redirect: 'follow'
+    }
+  
+    let res = await fetch("https://geocode.maps.co/reverse?lat=" + lat + "&lon=" + long + "&api_key=" + geocodingKey, requestOptions)
+
+    let data = await res.json()
+
+    if(res.status == 200) {
+      return await data.address
+    } else {
+      return res
+    }
 }

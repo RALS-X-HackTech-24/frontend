@@ -7,11 +7,62 @@ import Landing from './Screens/Landing';
 import SignUp from './Screens/SignUp';
 import Login from './Screens/Login';
 import PersonalInfo from './Screens/PersonalInfo';
+import AddPfp from './Screens/AddPfp';
+
+import Discover from './Screens/Discover';
+import Timeline from './Screens/Timeline';
+import Chat from './Screens/Chat';
+
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCompass, faMessage, faTimeline } from '@fortawesome/free-solid-svg-icons'
+
+import * as Colors from './Components/Colors';
 
 //navigation stack
 const Stack = createNativeStackNavigator();
 //navbar
 const Tab = createBottomTabNavigator();
+
+function NavBar() {
+  return(
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Discover') {
+            iconName = faCompass;
+          } else if (route.name === 'Chat') {
+            iconName = faMessage;
+          } else if (route.name === 'Timeline') {
+            iconName = faTimeline;
+          }
+          return(
+            <View>
+              <FontAwesomeIcon style={{alignSelf: 'center'}} icon={iconName} color={focused ? Colors.primary : Colors.secondaryDark} size={30}></FontAwesomeIcon>
+              {
+                focused
+                ?
+                <View style={{marginTop: '5%', width: 40, backgroundColor: Colors.primary, height: 3}}/>
+                :
+                <View style={{marginTop: '5%', height: 3}}/>
+              }
+            </View>
+          )
+        },
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          paddingTop: 10,
+        }
+      })}
+    >
+      <Tab.Screen name="Discover" component={Discover} />
+      <Tab.Screen name="Chat" component={Chat} />
+      <Tab.Screen name="Timeline" component={Timeline} />
+    </Tab.Navigator>
+  
+  )
+}
 
 export default function App() {
   return (
@@ -21,6 +72,8 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="PersonalInfo" component={PersonalInfo} />
+        <Stack.Screen name="AddPfp" component={AddPfp} />
+        <Stack.Screen name="Navbar" component={NavBar} />
       </Stack.Navigator>
     </NavigationContainer>
   );
