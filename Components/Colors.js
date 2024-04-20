@@ -1,0 +1,6 @@
+export const primary = "#1B4242"
+export const secondary = "#5C8374"
+export const background = "#F8F8F8"
+export const primaryDark = "#0D0B0F"
+export const secondaryDark = "#545454"
+export const white = "#FFFFFF"
