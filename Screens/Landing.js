@@ -11,7 +11,7 @@ export default function Landing( {navigation, route} ) {
         <Text style={styles.title}>Test</Text>
         <Text style={styles.subtitle}>Come together.</Text>
         <Button title="Sign Up" width={'65%'} height={50} marginTop={250} onPress={() => navigation.navigate("SignUp")}></Button> 
-        <Text marginTop={35} style={{fontSize:"20"}} onPress={() => navigation.navigate("Login")}> or <Text style={{fontWeight:"bold", color: Colors.primary, fontSize:"20"}}>login</Text> to your community</Text>
+        <Text marginTop={35} style={{fontSize:20}} onPress={() => navigation.navigate("Login")}> or <Text style={{fontWeight:"bold", color: Colors.primary, fontSize:20}}>login</Text> to your community</Text>
       </ImageBackground>
     </View>
   );
