@@ -1,13 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as Colors from '../Components/Colors'
+
+import { View, Text, StyleSheet, Alert, Image, ImageBackground, TextInput, ScrollView } from "react-native";
 import { Button } from '../Components/Button';
 
 export default function Landing( {navigation, route} ) {
   return (
     <View style={styles.container}>
-      <Text>Landing Page</Text>
-      <Button title="Sign Up" width={'65%'} height={50} marginTop={150} onPress={() => navigation.navigate("SignUp")}></Button>
-      <Button title="Login" width={'65%'} height={50} marginTop={30} onPress={() => navigation.navigate("Login")}></Button>
+      <ImageBackground source={require('../assets/landing.png')} style={{height:"100%",width:"100%", alignItems:"center", justifyContent:"center"}} >
+        <Text style={styles.title}>Test</Text>
+        <Text style={styles.subtitle}>Come together.</Text>
+        <Button title="Sign Up" width={'65%'} height={50} marginTop={150} onPress={() => navigation.navigate("SignUp")}></Button>
+        <Text marginTop={20} style={{fontSize:"20"}} onPress={() => navigation.navigate("Login")}> or <Text style={{fontWeight:"bold", color: Colors.secondaryDark, fontSize:"20"}}>login</Text> to your community</Text>
+      </ImageBackground>
     </View>
   );
 }
@@ -19,4 +24,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    fontSize: 50,
+    //bold text
+    fontWeight: 'bold',
+    color: Colors.primary,
+    marginTop: '10%',
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: 600,
+    color: Colors.secondary,
+    marginTop: 10,
+  }
 });
