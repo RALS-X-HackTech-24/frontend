@@ -94,17 +94,19 @@ export default function OnboardingInfo({navigation, route}) {
         }
       </View>
 
+
       <View style={{width: '80%', marginLeft: '10%', marginTop: '7%'}}>
-        <TextInput value={bio} onChangeText={text => setBio(text)} placeholder="Insert short bio here" placeholderTextColor={Colors.secondaryDark} style={{width: '100%', color: Colors.primaryDark, marginTop: '5%', fontSize: 14}}></TextInput>
+        <TextInput value={role} onChangeText={text => setRole(text)} placeholder="What's your role?" placeholderTextColor={Colors.secondaryDark} style={{width: '100%', color: Colors.primaryDark, marginTop: '5%', fontSize: 14}}></TextInput>
         <View style={{width: '100%', backgroundColor: Colors.secondaryDark, height: 1, marginTop: 5}}></View>
       </View>
 
-      <View style={{width: '80%', marginLeft: '10%', marginTop: '7%'}}>
-        <TextInput value={role} onChangeText={text => setRole(text)} placeholder="Insert role here" placeholderTextColor={Colors.secondaryDark} style={{width: '100%', color: Colors.primaryDark, marginTop: '5%', fontSize: 14}}></TextInput>
-        <View style={{width: '100%', backgroundColor: Colors.secondaryDark, height: 1, marginTop: 5}}></View>
+      <View style={{width: '80%', marginLeft: '10%', marginTop: '8%'}}>
+        <View style={{width: '100%', paddingHorizontal: 15, paddingVertical: 5, height: 200, borderRadius: 5, backgroundColor: Colors.gray, marginTop: '4%'}}>
+          <TextInput multiline value={bio} onChangeText={text => setBio(text)} placeholder="Tell us a bit about yourself..." placeholderTextColor={Colors.secondaryDark} style={{width: '100%', color: Colors.primaryDark, fontSize: 14}}></TextInput>
+        </View>
       </View>
 
-      <Button title="Continue" onPress={() => proceed()} backgroundColor={Colors.primary} width={"80%"} height={60} marginLeft={'10%'} color={"#fff"} marginTop={'18%'}></Button>
+      <Button title="Continue" onPress={() => proceed()} backgroundColor={Colors.primary} width={"80%"} height={60} marginLeft={'10%'} color={"#fff"} marginTop={'21%'}></Button>
     </View>
 
   );
