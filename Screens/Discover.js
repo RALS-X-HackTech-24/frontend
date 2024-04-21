@@ -6,6 +6,7 @@ import { getCampaigns, getUser } from '../Components/FunctionCalls';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBell, faChevronDown, faLocationPin, faMagnifyingGlass, faSliders, faUser, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { faStar} from '@fortawesome/free-regular-svg-icons';
+import { useIsFocused } from '@react-navigation/native';
 
 
 import * as Colors from '../Components/Colors'
@@ -15,18 +16,24 @@ export default function Discover( {navigation, route} ) {
   const { uid } = route.params
 
   const [campaigns, setCampaigns] = useState([])
-  const [user, setUser] = useState({name: null, email: null, uid: null, campaigns: []})
+  const [user, setUser] = useState({name: null, email: null, uid: null, campaigns: [], city: "city"})
+
+  const isFocusedDiscover = useIsFocused()
 
   useEffect(() => {
-    async function fetchData() {
-      let campaignsRes = await getCampaigns()
-      setCampaigns(campaignsRes)
+    if(isFocusedDiscover) {
+      async function fetchData() {
+        console.log("fetching data..")
 
-      let userRes = await getUser(uid)
-      setUser(userRes)
+        let campaignsRes = await getCampaigns()
+        setCampaigns(campaignsRes)
+  
+        let userRes = await getUser(uid)
+        setUser(userRes)
+      }
+      fetchData()
     }
-    fetchData()
-  }, [])
+  }, [isFocusedDiscover])
 
   return (
     <View style={styles.container}>
@@ -36,7 +43,7 @@ export default function Discover( {navigation, route} ) {
 
       <View style={{flexDirection: 'row', width: '90%', alignSelf: 'center', marginTop: '3%', alignItems: 'center'}}>
         <FontAwesomeIcon icon={faLocationPin} color={Colors.secondaryDark} size={15}></FontAwesomeIcon>
-        <Text style={{color: Colors.secondaryDark, marginLeft: '2%', fontSize: 15}}>Warsaw, Poland</Text>
+        <Text style={{color: Colors.secondaryDark, marginLeft: '2%', fontSize: 15}}>{user.city}</Text>
         <View style={{marginLeft: '7%'}}></View>
         <FontAwesomeIcon icon={faChevronDown} color={Colors.secondaryDark} size={12}></FontAwesomeIcon>
         <View style={{flex: 1}}></View>
@@ -73,7 +80,7 @@ export default function Discover( {navigation, route} ) {
                 <View style={{flexDirection: 'row', marginTop: '5%', justifyContent: 'space-between', alignItems: 'center'}}>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <FontAwesomeIcon icon={faChevronUp} color={Colors.primaryDark} style={{}}></FontAwesomeIcon>
-                  <Text style={{marginLeft: '10%', color: Colors.primaryDark}}>17</Text>
+                  <Text style={{marginLeft: '10%', color: Colors.primaryDark}}>{campaign.likes}</Text>
                   </View>
 
                   <FontAwesomeIcon icon={faStar} color={Colors.primaryDark} style={{}} ></FontAwesomeIcon>
@@ -83,6 +90,8 @@ export default function Discover( {navigation, route} ) {
             )
           })
         }
+
+        <View style={{marginTop: '20%'}}></View>
       </ScrollView>
     </View>
   );
