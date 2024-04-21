@@ -11,7 +11,6 @@ import AddPfp from './Screens/AddPfp';
 import UserTimeline from './Screens/UserTimeline'
 
 import Discover from './Screens/Discover';
-import Timeline from './Screens/Timeline';
 import Create from './Screens/Create';
 
 import Campaign from './Screens/Campaign';
@@ -62,7 +61,7 @@ function NavBar() {
     >
       <Tab.Screen name="Discover" component={Discover} />
       <Tab.Screen name="Create" component={Create} />
-      <Tab.Screen name="Timeline" component={Timeline} />
+      <Tab.Screen name="Timeline" component={UserTimeline} />
     </Tab.Navigator>
   
   )
