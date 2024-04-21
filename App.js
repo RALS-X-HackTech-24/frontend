@@ -9,6 +9,7 @@ import Login from './Screens/Login';
 import PersonalInfo from './Screens/PersonalInfo';
 import AddPfp from './Screens/AddPfp';
 import UserTimeline from './Screens/UserTimeline'
+import UserProfile from './Screens/UserProfile';
 
 import Discover from './Screens/Discover';
 import Create from './Screens/Create';
@@ -19,12 +20,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCompass, faMessage, faTimeline, faComments, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 import * as Colors from './Components/Colors';
-import { View } from 'react-native';
+import { LogBox, View } from 'react-native';
 
 //navigation stack
 const Stack = createNativeStackNavigator();
 //navbar
 const Tab = createBottomTabNavigator();
+
+LogBox.ignoreAllLogs()
 
 function NavBar({ route }) {
   const { uid } = route.params;
@@ -124,6 +127,7 @@ export default function App() {
         <Stack.Screen name="AddPfp" component={AddPfp} />
         <Stack.Screen name="Navbar" component={NavBar} />
         <Stack.Screen name="Campaign" component={Campaign} />
+        <Stack.Screen name="UserProfile" component={UserProfile}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -7,11 +7,11 @@ import { Button } from '../Components/Button';
 export default function Landing( {navigation, route} ) {
   return (
     <View style={styles.container}>
-      <ImageBackground source={require('../assets/landing.png')} style={{height:"100%",width:"100%", alignItems:"center"}} >
-        <Text style={styles.title}>Test</Text>
-        <Text style={styles.subtitle}>Come together.</Text>
+      <ImageBackground source={require('../assets/mural-background.png')} style={{height:"100%",width:"100%", alignItems:"center"}} >
+        <Text style={styles.title} marginTop={'32%'}>Kentro</Text>
+        <Text style={styles.subtitle} marginBottom={'47%'} >The future is irl.</Text>
         <Button title="Sign Up" width={'65%'} height={50} marginTop={250} onPress={() => navigation.navigate("SignUp")}></Button> 
-        <Text marginTop={35} style={{fontSize:20}} onPress={() => navigation.navigate("Login")}> or <Text style={{fontWeight:"bold", color: Colors.primary, fontSize:20}}>login</Text> to your community</Text>
+        <Text marginTop={27} style={{fontSize:20}} onPress={() => navigation.navigate("Login")}> or <Text style={{fontWeight:"bold", color: Colors.primary, fontSize:20}}>login</Text> to your community</Text>
       </ImageBackground>
     </View>
   );

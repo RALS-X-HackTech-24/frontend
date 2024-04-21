@@ -29,7 +29,7 @@ export default function SignUp( {navigation, route} ) {
       <ImageBackground source={require('../assets/signup.png')} style={{height:"100%",width:"100%"}} >
       
       <Text style={styles.header}>Sign Up</Text>
-      <Text style={styles.subHeader}>Let's find you a haven.</Text>
+      <Text style={styles.subHeader}>Let's build your community.</Text>
 
       <View style={{width: '80%', marginLeft: '10%', marginTop: '17%'}}>
         <Text style={{fontSize: 15}}>Email<Text style={{color: Colors.primary}}> *</Text></Text>
