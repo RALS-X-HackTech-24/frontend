@@ -1,11 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { Component } from 'react';
+import { Component, useEffect } from 'react';
 import { Button } from '../Components/Button';
 import { View, Text, StyleSheet, Alert, Image, ImageBackground, TextInput, ScrollView } from "react-native";
 import Timeline from 'react-native-timeline-flatlist'
 import * as Colors from '../Components/Colors'
+import { getUser } from '../Components/FunctionCalls';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faMedal } from '@fortawesome/free-solid-svg-icons';
 
 export default class Example extends Component {
+
   constructor(){
     super()
     this.data = [
@@ -15,7 +19,32 @@ export default class Example extends Component {
       {time: '10/23', title: '3rd Street Garden', description: 'Initial sketches for the mural unveiled at local community center.', imageUrl: "https://firebasestorage.googleapis.com/v0/b/chack24-4a090.appspot.com/o/mural2.png?alt=media&token=fc0a91bd-78dd-4c57-a4e3-5bcc5c45a1f5"},
       {time: '02/23', title: 'Sam Kirk Mural', description: 'Fundraising goal reached! The project will begin shortly.', imageUrl: "https://firebasestorage.googleapis.com/v0/b/chack24-4a090.appspot.com/o/publicgarden.png?alt=media&token=f0f921f0-c876-42ee-b7be-fbbb9de35840"}
     ]
-  } 
+    this.state = { investedCampaigns: [{amount: 0}] }
+    this.state = { name: "first last" }
+  }
+
+  componentDidMount() {
+    const { route } = this.props;
+    const { uid } = route.params;
+
+    getUser(uid).then((user) => {
+      console.log("meow")
+      this.setState({ name: user.name });
+      this.setState({ investedCampaigns: user.investedCampaigns });
+    })
+    /*
+    async function fetchData() {
+      console.log(uid)
+      user = await getUser(uid)
+      console.log(user.name)
+      //update the state with the user data
+      this.setState({ name: user.name });
+      this.setState({ investedCampaigns: user.investedCampaigns });
+    }
+
+    fetchData()
+    */
+  }
 
   renderDetail(rowData, sectionID, rowID) {
     const img = <Image source={{uri: rowData.imageUrl}} style={styles.image} marginBottom={10}/>
@@ -36,8 +65,52 @@ export default class Example extends Component {
     //'rgb(45,156,219)'
     return (
       <View style={styles.container}>
-        <Text style={styles.subHeader}>Hey there, let's</Text>
+        <Text style={styles.subHeader}>Hey {this.state.name.split(" ")[0]}, let's</Text>
         <Text style={styles.header}>View Your Impact</Text>
+
+        <ScrollView>
+
+        <View style={{width: '95%', marginLeft: '5%', marginTop: '10%', height: 155}}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            
+            <View style={{height: 150, width: 150, backgroundColor: Colors.white, borderRadius: 5, justifyContent: 'center', alignItems: 'center', shadowColor: Colors.gold, shadowOpacity: 0.6, shadowOffset: {width: 1, height: 3}}}>
+              <View style={{flexDirection: 'row', marginLeft: '-10%', alignItems: 'center'}}>
+                <FontAwesomeIcon icon={faMedal} size={20} color={Colors.gold}></FontAwesomeIcon>
+                <Text style={{fontSize: 20, fontWeight: 'bold', color: Colors.primaryDark, marginLeft: '4%'}}>3</Text>
+              </View>
+              <Text style={{fontSize: 16, fontWeight: '600', color: Colors.secondaryDark, marginTop: '7%'}}>Campaigns</Text>
+              <Text style={{fontSize: 16, fontWeight: '600', color: Colors.secondaryDark}}>Backed</Text>
+            </View>
+
+            <View style={{marginLeft: 50, height: 150, width: 150, backgroundColor: Colors.white, borderRadius: 5, justifyContent: 'center', alignItems: 'center', shadowColor: Colors.broze, shadowOpacity: 0.6, shadowOffset: {width: 1, height: 3}}}>
+              <View style={{flexDirection: 'row', marginLeft: '-10%', alignItems: 'center'}}>
+                <FontAwesomeIcon icon={faMedal} size={20} color={Colors.broze}></FontAwesomeIcon>
+                <Text style={{fontSize: 20, fontWeight: 'bold', color: Colors.primaryDark, marginLeft: '4%'}}>$250</Text>
+              </View>
+              <Text style={{fontSize: 16, fontWeight: '600', color: Colors.secondaryDark, marginTop: '7%'}}>Dollars</Text>
+              <Text style={{fontSize: 16, fontWeight: '600', color: Colors.secondaryDark}}>Invested</Text>
+            </View>
+
+            <View style={{marginLeft: 50, height: 150, width: 150, backgroundColor: Colors.white, borderRadius: 5, justifyContent: 'center', alignItems: 'center', shadowColor: Colors.silver, shadowOpacity: 0.6, shadowOffset: {width: 1, height: 3}}}>
+              <View style={{flexDirection: 'row', marginLeft: '-10%', alignItems: 'center'}}>
+                <FontAwesomeIcon icon={faMedal} size={20} color={Colors.silver}></FontAwesomeIcon>
+                <Text style={{fontSize: 20, fontWeight: 'bold', color: Colors.primaryDark, marginLeft: '4%'}}>7</Text>
+              </View>
+              <Text style={{fontSize: 16, fontWeight: '600', color: Colors.secondaryDark, marginTop: '7%'}}>Created</Text>
+              <Text style={{fontSize: 16, fontWeight: '600', color: Colors.secondaryDark}}>Campaigns</Text>
+            </View>
+
+            <View style={{marginLeft: 50, height: 150, width: 150, backgroundColor: Colors.white, borderRadius: 5, justifyContent: 'center', alignItems: 'center', shadowColor: Colors.gold, shadowOpacity: 0.6, shadowOffset: {width: 1, height: 3}}}>
+              <View style={{flexDirection: 'row', marginLeft: '-10%', alignItems: 'center'}}>
+                <FontAwesomeIcon icon={faMedal} size={20} color={Colors.gold}></FontAwesomeIcon>
+                <Text style={{fontSize: 20, fontWeight: 'bold', color: Colors.primaryDark, marginLeft: '4%'}}>$570</Text>
+              </View>
+              <Text style={{fontSize: 16, fontWeight: '600', color: Colors.secondaryDark, marginTop: '7%'}}>Raised Total</Text>
+              <Text style={{fontSize: 16, fontWeight: '600', color: Colors.secondaryDark}}>For Community</Text>
+            </View>
+
+          </ScrollView>
+        </View>
 
         <Timeline 
           showsVerticalScrollIndicator={false}
@@ -51,6 +124,7 @@ export default class Example extends Component {
           columnFormat='two-column'
           renderDetail={this.renderDetail}
         />
+        </ScrollView>
       </View>
     );
   }
