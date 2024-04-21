@@ -36,6 +36,9 @@ export default class Example extends Component {
     //'rgb(45,156,219)'
     return (
       <View style={styles.container}>
+        <Text style={styles.subHeader}>Hey there, let's</Text>
+        <Text style={styles.header}>View Your Impact</Text>
+
         <Timeline 
           showsVerticalScrollIndicator={false}
           style={styles.list}
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
-    marginTop:100,
+    marginTop:70,
   },
   image:{
     width: 130,
@@ -99,5 +102,19 @@ const styles = StyleSheet.create({
   textDescription: {
     color: Colors.secondaryDark,
     fontSize: 11,
+  },
+  header: {
+    fontSize: 27,
+    color: Colors.primaryDark,
+    marginTop: '2%',
+    marginLeft: '5%',
+    fontWeight: 'bold'
+  },
+  subHeader: {
+    fontSize: 20,
+    color: Colors.secondaryDark,
+    marginTop: '20%',
+    marginLeft: '5%',
+    fontWeight: '600'
   }
 });

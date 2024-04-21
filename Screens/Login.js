@@ -11,7 +11,7 @@ export default function Login({navigation, route}) {
   async function loginButton() {
     let res = await login(email, password)
     if (res.success) {
-      navigation.navigate("Navbar", {screen: "Discover", params: {uid: res.uid}})
+      navigation.navigate("Navbar", {uid: res.uid})
     } else {
       Alert.alert(res.message)
     }

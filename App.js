@@ -1,5 +1,5 @@
 // nav imports
-import { NavigationContainer, StackActions, DefaultTheme } from '@react-navigation/native'
+import { NavigationContainer, StackActions, DefaultTheme, useRoute } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
@@ -26,7 +26,52 @@ const Stack = createNativeStackNavigator();
 //navbar
 const Tab = createBottomTabNavigator();
 
+function NavBar({ route }) {
+  const { uid } = route.params;
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Discover') {
+            iconName = faCompass;
+          } else if (route.name === 'Create') {
+            iconName = faPlusCircle;
+          } else if (route.name === 'Timeline') {
+            iconName = faTimeline;
+          }
+          return (
+            <View>
+              <FontAwesomeIcon style={{ alignSelf: 'center' }} icon={iconName} color={focused ? Colors.primary : Colors.secondaryDark} size={30}></FontAwesomeIcon>
+              {
+                focused
+                  ?
+                  <View style={{ marginTop: '5%', width: 40, backgroundColor: Colors.primary, height: 3 }} />
+                  :
+                  <View style={{ marginTop: '5%', height: 3 }} />
+              }
+            </View>
+          )
+        },
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          paddingTop: 10,
+        }
+      })}
+    >
+      <Tab.Screen name="Discover" initialParams={{ uid: uid }} component={Discover} />
+      <Tab.Screen name="Create" initialParams={{ uid: uid }} component={Create} />
+      <Tab.Screen name="Timeline" initialParams={{ uid: uid }} component={UserTimeline} />
+    </Tab.Navigator>
+  )
+}
+
+/*
 function NavBar() {
+  const route = useRoute()
+  const { uid } = route.params
+
   return(
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -60,12 +105,13 @@ function NavBar() {
       })}
     >
       <Tab.Screen name="Discover" component={Discover} />
-      <Tab.Screen name="Create" component={Create} />
+      <Tab.Screen name="Create" initialParams={{uid: uid}} component={Create} />
       <Tab.Screen name="Timeline" component={UserTimeline} />
     </Tab.Navigator>
   
   )
 }
+*/
 
 export default function App() {
   return (

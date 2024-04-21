@@ -27,6 +27,7 @@ export default function Campaign( {navigation, route} ) {
     let checkoutRes = await getCheckoutLink(parseInt(amount)*100, campaign.id, user.uid)
     let url = checkoutRes.url
 
+    navigation.goBack()
     Linking.openURL(url)
   }
 

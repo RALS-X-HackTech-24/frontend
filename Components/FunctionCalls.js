@@ -110,3 +110,28 @@ export async function getCheckoutLink(amount, campaign, uid) {
     return res
   }
 }
+
+export async function createCampaign(name, description, image, goal, expiry, location, organizer) {
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json")
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify({
+      name: name,
+      description: description,
+      images: image,
+      goal: goal,
+      expiry: expiry,
+      location: location,
+      organizer: organizer
+    }),
+    redirect: 'follow'
+  }
+
+  let res =  await fetch(baseURL+"payments/createCampaign", requestOptions)
+
+  return res
+}
