@@ -135,3 +135,22 @@ export async function createCampaign(name, description, image, goal, expiry, loc
 
   return res
 }
+
+export async function updateUser(user){
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json")
+  myHeaders.append("Authorization", await getAuthToken())
+
+  console.log("Yo am i getting to updating user?")
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify({user}),
+    redirect: 'follow'
+  }
+
+  console.log(JSON.stringify(user))
+
+  let res =  await fetch(baseURL+"users/updateUser", requestOptions)
+  return res
+}

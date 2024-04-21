@@ -47,7 +47,9 @@ export default function Discover( {navigation, route} ) {
         <View style={{marginLeft: '7%'}}></View>
         <FontAwesomeIcon icon={faChevronDown} color={Colors.secondaryDark} size={12}></FontAwesomeIcon>
         <View style={{flex: 1}}></View>
-        <FontAwesomeIcon icon={faUser} color={Colors.secondaryDark} size={20}></FontAwesomeIcon>
+        <TouchableOpacity style={styles.button}onPress={() => navigation.navigate("UserProfile", {uid: user.uid, email: user.email})}>
+          <FontAwesomeIcon icon={faUser} color={Colors.secondaryDark} size={20}></FontAwesomeIcon>
+        </TouchableOpacity>
         <View style={{marginLeft: '5%'}}></View>
         <FontAwesomeIcon icon={faBell} color={Colors.secondaryDark} size={20}></FontAwesomeIcon>
 

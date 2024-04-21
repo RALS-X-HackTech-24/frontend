@@ -65,7 +65,7 @@ export default class Example extends Component {
     //'rgb(45,156,219)'
     return (
       <View style={styles.container}>
-        <Text style={styles.subHeader}>Hey {this.state.name.split(" ")[0]}, let's</Text>
+        <Text style={styles.subHeader}>Hey {this.state.name}, let's</Text>
         <Text style={styles.header}>View Your Impact</Text>
 
         <ScrollView>
