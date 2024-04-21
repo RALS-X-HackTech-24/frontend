@@ -11,10 +11,12 @@ import AddPfp from './Screens/AddPfp';
 
 import Discover from './Screens/Discover';
 import Timeline from './Screens/Timeline';
-import Chat from './Screens/Chat';
+import Create from './Screens/Create';
+
+import Campaign from './Screens/Campaign';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCompass, faMessage, faTimeline, faComments } from '@fortawesome/free-solid-svg-icons'
+import { faCompass, faMessage, faTimeline, faComments, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 import * as Colors from './Components/Colors';
 import { View } from 'react-native';
@@ -32,8 +34,8 @@ function NavBar() {
           let iconName;
           if (route.name === 'Discover') {
             iconName = faCompass;
-          } else if (route.name === 'Chat') {
-            iconName = faComments;
+          } else if (route.name === 'Create') {
+            iconName = faPlusCircle;
           } else if (route.name === 'Timeline') {
             iconName = faTimeline;
           }
@@ -58,7 +60,7 @@ function NavBar() {
       })}
     >
       <Tab.Screen name="Discover" component={Discover} />
-      <Tab.Screen name="Chat" component={Chat} />
+      <Tab.Screen name="Create" component={Create} />
       <Tab.Screen name="Timeline" component={Timeline} />
     </Tab.Navigator>
   
@@ -75,6 +77,7 @@ export default function App() {
         <Stack.Screen name="PersonalInfo" component={PersonalInfo} />
         <Stack.Screen name="AddPfp" component={AddPfp} />
         <Stack.Screen name="Navbar" component={NavBar} />
+        <Stack.Screen name="Campaign" component={Campaign} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -23,7 +23,7 @@ export async function createUser(user) {
   return res
 }
 
-export async function getStays() {
+export async function getCampaigns() {
 
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json")
@@ -35,7 +35,7 @@ export async function getStays() {
     redirect: 'follow'
   }
 
-  let res =  await fetch(baseURL+"stays/getStays", requestOptions)
+  let res =  await fetch(baseURL+"campaigns/getCampaigns", requestOptions)
 
   if(res.status == 200) {
     return await res.json()
@@ -53,7 +53,7 @@ export async function getUser(uid) {
   var requestOptions = {
     method: "POST",
     headers: myHeaders,
-    body: JSON.stringify({id: uid}),
+    body: JSON.stringify({uid: uid}),
     redirect: 'follow'
   }
 
@@ -83,4 +83,30 @@ export async function reverseGeoCode(lat, long) {
     } else {
       return res
     }
+}
+
+export async function getCheckoutLink(amount, campaign, uid) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const raw = JSON.stringify({
+    "amount": amount,
+    "campaign": campaign,
+    "uid": uid
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+  };
+
+  let res = await fetch("http://localhost:5000/chack24-4a090/us-central1/payments/checkout", requestOptions)
+
+  if(res.status == 200) {
+    return await res.json()
+  } else {
+    return res
+  }
 }
