@@ -16,6 +16,7 @@
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
+    "clock": "^1.0.2",
     "expo": "~50.0.14",
     "expo-image-picker": "~14.7.1",
     "expo-location": "~16.5.5",
@@ -26,7 +27,8 @@
     "react-native": "0.73.6",
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-safe-area-context": "4.8.2",
-    "react-native-screens": "~3.29.0"
+    "react-native-screens": "~3.29.0",
+    "react-native-timeline-flatlist": "^0.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

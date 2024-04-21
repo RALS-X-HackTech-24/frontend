@@ -8,6 +8,7 @@ import SignUp from './Screens/SignUp';
 import Login from './Screens/Login';
 import PersonalInfo from './Screens/PersonalInfo';
 import AddPfp from './Screens/AddPfp';
+import UserTimeline from './Screens/UserTimeline'
 
 import Discover from './Screens/Discover';
 import Timeline from './Screens/Timeline';
