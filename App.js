@@ -8,9 +8,10 @@ import SignUp from './Screens/SignUp';
 import Login from './Screens/Login';
 import PersonalInfo from './Screens/PersonalInfo';
 import AddPfp from './Screens/AddPfp';
+import UserTimeline from './Screens/UserTimeline'
 
 import Discover from './Screens/Discover';
-import Timeline from './Screens/Timeline';
+
 import Chat from './Screens/Chat';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -34,7 +35,7 @@ function NavBar() {
             iconName = faCompass;
           } else if (route.name === 'Chat') {
             iconName = faComments;
-          } else if (route.name === 'Timeline') {
+          } else if (route.name === 'UserTimeline') {
             iconName = faTimeline;
           }
           return(
@@ -59,7 +60,7 @@ function NavBar() {
     >
       <Tab.Screen name="Discover" component={Discover} />
       <Tab.Screen name="Chat" component={Chat} />
-      <Tab.Screen name="Timeline" component={Timeline} />
+      <Tab.Screen name="UserTimeline" component={UserTimeline} />
     </Tab.Navigator>
   
   )
@@ -75,6 +76,7 @@ export default function App() {
         <Stack.Screen name="PersonalInfo" component={PersonalInfo} />
         <Stack.Screen name="AddPfp" component={AddPfp} />
         <Stack.Screen name="Navbar" component={NavBar} />
+        <Stack.Screen name="UserTimeline" component={UserTimeline} />
       </Stack.Navigator>
     </NavigationContainer>
   );
